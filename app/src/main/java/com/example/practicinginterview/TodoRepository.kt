@@ -1,10 +1,7 @@
-import com.example.practicinginterview.api.RetrofitInstance
 import com.example.practicinginterview.api.TodoApi
 import com.example.practicinginterview.api.TodoModel
 
-class TodoRepository {
-    private val api = RetrofitInstance.api
-
+class TodoRepository(private val api: TodoApi) {
     suspend fun getAllTodos(): Result<List<TodoModel>?> {
         return try {
             val response = api.getAllTodos()

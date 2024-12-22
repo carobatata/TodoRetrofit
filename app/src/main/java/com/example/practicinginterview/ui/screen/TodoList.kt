@@ -12,12 +12,14 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.practicinginterview.TodoViewModel
 import com.example.practicinginterview.ui.theme.PracticingInterviewTheme
+import org.koin.androidx.compose.getViewModel
 
 @Composable
 fun TodoList(){
 
-    val viewModel = TodoViewModel()
-    val todoList = viewModel.todoItems.collectAsState()
+    val todoViewModel = getViewModel<TodoViewModel>()
+
+    val todoList = todoViewModel.todoItems.collectAsState()
 
     LazyColumn {
         items(

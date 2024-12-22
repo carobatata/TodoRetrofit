@@ -8,9 +8,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
-class TodoViewModel : ViewModel() {
-
-    private val repository = TodoRepository()
+class TodoViewModel(private val repository: TodoRepository) : ViewModel() {
 
     private var _todoItems = MutableStateFlow(emptyList<TodoModel>())
     val todoItems: StateFlow<List<TodoModel>> = _todoItems
