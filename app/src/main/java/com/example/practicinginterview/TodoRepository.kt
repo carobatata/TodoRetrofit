@@ -8,7 +8,7 @@ class TodoRepository(private val api: TodoApi) {
             if (response.isSuccessful) {
                 Result.success(response.body())
             } else {
-                Result.failure(Exception(response.message()))
+                Result.failure(Exception("API error: ${response.message()}"))
             }
         } catch (e: Exception) {
             Result.failure(e)

@@ -56,6 +56,7 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+    testImplementation(libs.mockk)
 
     //Retrofit
     implementation(libs.retrofit)
@@ -65,4 +66,8 @@ dependencies {
     implementation(libs.koin.android)
     implementation(libs.koin.androidx.navigation)
     implementation(libs.koin.androidx.compose)
+
+    //Coroutines
+    testImplementation(libs.kotlinx.coroutines.core)
+    testImplementation(libs.kotlinx.coroutines.test)
 }

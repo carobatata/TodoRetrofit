@@ -10,6 +10,8 @@ activityCompose = "1.9.3"
 composeBom = "2024.04.01"
 retrofit = "2.11.0"
 koin = "3.5.0"
+mockk = "1.13.5"
+coroutines = "1.8.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -31,6 +33,9 @@ retrofit-converter-gson = { group = "com.squareup.retrofit2", name = "converter-
 koin-android = { group = "io.insert-koin", name = "koin-android", version.ref = "koin" }
 koin-androidx-compose = { group = "io.insert-koin", name = "koin-androidx-compose", version.ref = "koin" }
 koin-androidx-navigation = { group = "io.insert-koin", name = "koin-androidx-navigation", version.ref = "koin" }
+mockk  = { module = "io.mockk:mockk", version.ref = "mockk" }
+kotlinx-coroutines-core  = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
+kotlinx-coroutines-test  = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
