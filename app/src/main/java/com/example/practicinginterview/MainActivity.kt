@@ -17,6 +17,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults.topAppBarColors
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.navigation.compose.NavHost
@@ -24,6 +25,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
 import com.example.practicinginterview.ui.CreateTodoScreen
+import com.example.practicinginterview.ui.ThirdScreen
 import com.example.practicinginterview.ui.TodoListScreen
 import com.example.practicinginterview.ui.screen.CreateTodoUiScreen
 import com.example.practicinginterview.ui.screen.TodoList
@@ -83,7 +85,14 @@ class MainActivity : ComponentActivity() {
                             composable<TodoListScreen> { TodoList() }
                             composable<CreateTodoScreen> {
                                 val args = it.toRoute<CreateTodoScreen>()
-                                CreateTodoUiScreen(args.name)
+                                CreateTodoUiScreen(args.name) { navController.navigate(ThirdScreen) }
+                            }
+                            composable<ThirdScreen> {
+                                Column(
+                                    horizontalAlignment = Alignment.CenterHorizontally
+                                ){
+                                    Text("Third Screen")
+                                }
                             }
                         }
                     }

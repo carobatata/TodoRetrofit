@@ -10,3 +10,6 @@ object TodoListScreen
 data class CreateTodoScreen(
     val name: String
 )
+
+@Serializable
+object ThirdScreen
