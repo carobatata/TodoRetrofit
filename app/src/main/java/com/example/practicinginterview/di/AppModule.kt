@@ -2,6 +2,7 @@ package com.example.practicinginterview.di
 
 import TodoRepository
 import com.example.practicinginterview.TodoViewModel
+import com.example.practicinginterview.api.CreateTodoViewModel
 import com.example.practicinginterview.api.TodoApi
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -30,5 +31,9 @@ val appModule = module {
 
     viewModel {
         TodoViewModel(get())
+    }
+
+    viewModel {
+        CreateTodoViewModel()
     }
 }

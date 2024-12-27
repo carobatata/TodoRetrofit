@@ -2,7 +2,6 @@ package com.example.practicinginterview.ui
 
 import kotlinx.serialization.Serializable
 
-//routes
 @Serializable
 object TodoListScreen
 
@@ -12,4 +11,4 @@ data class CreateTodoScreen(
 )
 
 @Serializable
-object ThirdScreen
+object CreateTodoForm
