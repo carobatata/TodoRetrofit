@@ -4,6 +4,7 @@ import TodoRepository
 import com.example.practicinginterview.TodoViewModel
 import com.example.practicinginterview.CreateTodoViewModel
 import com.example.practicinginterview.api.TodoApi
+import com.example.practicinginterview.posts.PostRepository
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -29,11 +30,15 @@ val appModule = module {
         TodoRepository(get())
     }
 
+    single {
+        PostRepository(get())
+    }
+
     viewModel {
         TodoViewModel(get())
     }
 
     viewModel {
-        CreateTodoViewModel()
+        CreateTodoViewModel(get())
     }
 }

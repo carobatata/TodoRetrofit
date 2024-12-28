@@ -44,10 +44,10 @@ fun CreateTodoFormScreen(onClickGoToLastScreen: () -> Unit) {
     TodoForm(
         todoName,
         {viewModel.updateTodoName(it)},
-        { viewModel.createTodo(it) },
+        { viewModel.createTodo() },
         onClickGoToLastScreen,
         { viewModel.updateTodoOption(it) },
-        optionSelectedText
+        optionSelectedText,
     )
 }
 
@@ -55,7 +55,7 @@ fun CreateTodoFormScreen(onClickGoToLastScreen: () -> Unit) {
 fun TodoForm(
     todoName: String,
     updateTodoName: (String) -> Unit,
-    onClickCreateToDo: (String) -> Unit,
+    onClickCreateToDo: () -> Unit,
     onClickGoToLastScreen: () -> Unit,
     updateTodoOption: (String) -> Unit,
     optionSelectedText: String) {
@@ -104,7 +104,7 @@ fun TodoForm(
             modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp),
             onClick = {
                 if(todoName.isEmpty().not()){
-                    onClickCreateToDo(todoName)
+                    onClickCreateToDo()
                     onClickGoToLastScreen()
                 }
             }
