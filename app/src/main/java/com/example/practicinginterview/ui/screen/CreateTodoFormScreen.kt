@@ -19,6 +19,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -30,23 +31,34 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.practicinginterview.api.CreateTodoViewModel
+import com.example.practicinginterview.CreateTodoViewModel
 import org.koin.androidx.compose.getViewModel
 
 @Composable
 fun CreateTodoFormScreen(onClickGoToLastScreen: () -> Unit) {
 
     val viewModel = getViewModel<CreateTodoViewModel>()
+    val todoName = viewModel.todoName.collectAsState().value
+    val optionSelectedText = viewModel.todoOptions.collectAsState().value
 
     TodoForm(
+        todoName,
+        {viewModel.updateTodoName(it)},
         { viewModel.createTodo(it) },
-        onClickGoToLastScreen
+        onClickGoToLastScreen,
+        { viewModel.updateTodoOption(it) },
+        optionSelectedText
     )
 }
 
 @Composable
-fun TodoForm(onCreate: (String) -> Unit, onClickGoToLastScreen: () -> Unit) {
-    var todoName by rememberSaveable { mutableStateOf("") }
+fun TodoForm(
+    todoName: String,
+    updateTodoName: (String) -> Unit,
+    onClickCreateToDo: (String) -> Unit,
+    onClickGoToLastScreen: () -> Unit,
+    updateTodoOption: (String) -> Unit,
+    optionSelectedText: String) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -66,7 +78,7 @@ fun TodoForm(onCreate: (String) -> Unit, onClickGoToLastScreen: () -> Unit) {
                 Modifier.padding(vertical = 10.dp))
             TextField(
                 value = todoName,
-                onValueChange = { todoName = it },
+                onValueChange = { updateTodoName(it) },
                 placeholder = { Text("Create a Todo") },
                 modifier = Modifier.fillMaxWidth(),
                 isError = todoName.isEmpty(),
@@ -86,13 +98,13 @@ fun TodoForm(onCreate: (String) -> Unit, onClickGoToLastScreen: () -> Unit) {
             )
         }
 
-        DropDownWithOptions()
+        DropDownWithOptions(updateTodoOption, optionSelectedText)
 
         Button(
             modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp),
             onClick = {
                 if(todoName.isEmpty().not()){
-                    onCreate(todoName)
+                    onClickCreateToDo(todoName)
                     onClickGoToLastScreen()
                 }
             }
@@ -103,9 +115,8 @@ fun TodoForm(onCreate: (String) -> Unit, onClickGoToLastScreen: () -> Unit) {
 }
 
 @Composable
-fun DropDownWithOptions() {
+fun DropDownWithOptions(updateTodoOption: (String) -> Unit, optionSelectedText: String) {
     var expanded by rememberSaveable { mutableStateOf(false) }
-    var optionSelected by rememberSaveable { mutableStateOf("Options") }
 
     Box(Modifier.border(
         width = 2.dp,
@@ -113,7 +124,7 @@ fun DropDownWithOptions() {
     ).padding(start = 15.dp)
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
-            Text(optionSelected)
+            Text(optionSelectedText)
             IconButton(
                 onClick = {
                     expanded = !expanded
@@ -132,11 +143,11 @@ fun DropDownWithOptions() {
         ) {
             DropdownMenuItem(
                 text = { Text("Option 1") },
-                onClick = { optionSelected = "Option 1" }
+                onClick = { updateTodoOption("Option 1") }
             )
             DropdownMenuItem(
                 text = { Text("Option 2") },
-                onClick = {optionSelected = "Option 2" }
+                onClick = { updateTodoOption("Option 2") }
             )
         }
     }
@@ -146,5 +157,5 @@ fun DropDownWithOptions() {
 @Preview
 @Composable
 fun CreateFormPreview() {
-    TodoForm({}, {})
+    TodoForm("Todo", {}, {}, {}, {}, "Options")
 }
