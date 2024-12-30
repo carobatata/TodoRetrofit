@@ -23,8 +23,10 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
+import com.example.practicinginterview.flights.FlightScreen
 import com.example.practicinginterview.ui.CreateTodoScreen
 import com.example.practicinginterview.ui.CreateTodoForm
+import com.example.practicinginterview.ui.FlightScreenRoute
 import com.example.practicinginterview.ui.TodoListScreen
 import com.example.practicinginterview.ui.screen.CreateTodoFormScreen
 import com.example.practicinginterview.ui.screen.CreateTodoUiScreen
@@ -89,9 +91,12 @@ class MainActivity : ComponentActivity() {
                                 val args = it.toRoute<CreateTodoScreen>()
                                 CreateTodoUiScreen(args.name,
                                     { navController.navigate(CreateTodoForm) },
-                                    {navController.popBackStack() })
+                                    {navController.popBackStack() },
+                                    { navController.navigate(FlightScreenRoute) }
+                                )
                             }
                             composable<CreateTodoForm> { CreateTodoFormScreen { navController.popBackStack() } }
+                            composable<FlightScreenRoute> { FlightScreen() }
                         }
                     }
                 }

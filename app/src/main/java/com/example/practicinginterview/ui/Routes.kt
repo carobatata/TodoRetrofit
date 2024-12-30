@@ -12,3 +12,6 @@ data class CreateTodoScreen(
 
 @Serializable
 object CreateTodoForm
+
+@Serializable
+object FlightScreenRoute

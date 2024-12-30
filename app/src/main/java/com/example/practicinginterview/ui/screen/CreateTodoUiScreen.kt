@@ -6,7 +6,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 
 @Composable
-fun CreateTodoUiScreen(name: String, navigateToThirdScreen: () -> Unit, onBackButton: () -> Unit) {
+fun CreateTodoUiScreen(
+    name: String,
+    navigateToThirdScreen: () -> Unit,
+    onBackButton: () -> Unit,
+    goToFlights: () -> Unit
+) {
     Column {
         Text("Hello, you are in the other screen. My name is $name")
         Button(
@@ -18,6 +23,11 @@ fun CreateTodoUiScreen(name: String, navigateToThirdScreen: () -> Unit, onBackBu
             onClick = { onBackButton() }
         ) {
             Text("Click me to go to last screen")
+        }
+        Button(
+            onClick = { goToFlights() }
+        ) {
+            Text("Go to Flights")
         }
     }
 }

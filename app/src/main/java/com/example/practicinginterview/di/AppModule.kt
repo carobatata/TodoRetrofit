@@ -4,6 +4,7 @@ import TodoRepository
 import com.example.practicinginterview.TodoViewModel
 import com.example.practicinginterview.CreateTodoViewModel
 import com.example.practicinginterview.api.TodoApi
+import com.example.practicinginterview.flights.FlightViewModel
 import com.example.practicinginterview.posts.PostRepository
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -40,5 +41,9 @@ val appModule = module {
 
     viewModel {
         CreateTodoViewModel(get())
+    }
+
+    viewModel {
+        FlightViewModel()
     }
 }
