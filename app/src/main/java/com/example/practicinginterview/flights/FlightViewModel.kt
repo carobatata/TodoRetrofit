@@ -1,5 +1,6 @@
 package com.example.practicinginterview.flights
 
+import androidx.annotation.OpenForTesting
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -13,7 +14,12 @@ class FlightViewModel : ViewModel() {
         updateList()
     }
 
-    private fun updateList() {
+    fun filterFlights(maxPrice: Int)  {
+        updateList()
+        _flightList.value = filterFlightsUntilValue(_flightList.value, maxPrice)
+    }
+
+    fun updateList() {
         val list = List(15) { index ->
             Flight(
                 name = "Flight # ${index + 1}",
@@ -21,6 +27,13 @@ class FlightViewModel : ViewModel() {
             )
         }
         _flightList.value = list
+    }
+
+    @OpenForTesting
+    fun filterFlightsUntilValue(flights: List<Flight>, value: Int): List<Flight> {
+        return flights.filter {
+            it.price < value
+        }
     }
 
 }
