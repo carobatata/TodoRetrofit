@@ -24,6 +24,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
 import com.example.practicinginterview.flights.FlightScreen
+import com.example.practicinginterview.ui.CounterScreen
+import com.example.practicinginterview.ui.CounterScreenRoute
 import com.example.practicinginterview.ui.CreateTodoScreen
 import com.example.practicinginterview.ui.CreateTodoForm
 import com.example.practicinginterview.ui.FlightScreenRoute
@@ -92,11 +94,13 @@ class MainActivity : ComponentActivity() {
                                 CreateTodoUiScreen(args.name,
                                     { navController.navigate(CreateTodoForm) },
                                     {navController.popBackStack() },
-                                    { navController.navigate(FlightScreenRoute) }
+                                    { navController.navigate(FlightScreenRoute)},
+                                    { navController.navigate(CounterScreenRoute) }
                                 )
                             }
                             composable<CreateTodoForm> { CreateTodoFormScreen { navController.popBackStack() } }
                             composable<FlightScreenRoute> { FlightScreen() }
+                            composable<CounterScreenRoute> { CounterScreen() }
                         }
                     }
                 }

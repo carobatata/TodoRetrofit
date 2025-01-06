@@ -10,7 +10,8 @@ fun CreateTodoUiScreen(
     name: String,
     navigateToThirdScreen: () -> Unit,
     onBackButton: () -> Unit,
-    goToFlights: () -> Unit
+    goToFlights: () -> Unit,
+    goToCounter: () -> Unit
 ) {
     Column {
         Text("Hello, you are in the other screen. My name is $name")
@@ -28,6 +29,11 @@ fun CreateTodoUiScreen(
             onClick = { goToFlights() }
         ) {
             Text("Go to Flights")
+        }
+        Button(
+            onClick = { goToCounter() }
+        ) {
+            Text("Go to Counter Screen")
         }
     }
 }

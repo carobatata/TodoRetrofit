@@ -15,3 +15,6 @@ object CreateTodoForm
 
 @Serializable
 object FlightScreenRoute
+
+@Serializable
+object CounterScreenRoute
